@@ -14,7 +14,6 @@ RUN pip install pycrypto
 
 RUN mkdir /app
 
-COPY User_Input.py /app/User_Input.py
 COPY Decrypt_File.py /app/Decrypt_File.py
 COPY Encrypt_File.py /app/Encrypt_File.py
 

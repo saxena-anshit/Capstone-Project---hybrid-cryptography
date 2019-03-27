@@ -2,6 +2,8 @@ from Utilities.RSA_Encryption import generate_keys, encrypt_data
 from Utilities.Hash_Algorithm import hash_function
 from Utilities.One_Time_Pad import one_time_pad_password
 
+import sys
+
 
 def write_to_en_file(encrypted_file, name, ext):
     with open(name + '.en.' + ext, 'w') as file:
@@ -66,7 +68,7 @@ def encrypt(plain_text, name=None, ext=None):
     
     
 if __name__ == '__main__':
-    file_name = input("Enter the file name to encrypt: ")
+    file_name = sys.argv[1]
     name, ext = file_name.split(".")
         
     plain_text = open(file_name, 'rb').read().decode("utf-8")

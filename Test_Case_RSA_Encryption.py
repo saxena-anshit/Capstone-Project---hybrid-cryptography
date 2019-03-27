@@ -2,13 +2,12 @@
 from Utilities.RSA_Encryption import RSA_Encryption, generate_keys, encrypt_data, decrypt_data
 
 import unittest
-import math
 
-class TestStringMethods(unittest.TestCase): 
+class TestStringMethods(unittest.TestCase):
+
     
-    def setUp(self): 
+    def setUp(self):
         pass
-    
 
     def is_prime(self, number):
         if number == 2:

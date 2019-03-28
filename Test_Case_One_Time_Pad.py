@@ -2,9 +2,9 @@
 from Utilities.One_Time_Pad import one_time_pad_password
 
 import unittest
-import math
 
-class TestStringMethods(unittest.TestCase): 
+
+class TestStringMethods(unittest.TestCase):
     
     def setUp(self): 
         pass

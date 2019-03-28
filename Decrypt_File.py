@@ -1,6 +1,8 @@
 from Utilities.RSA_Encryption import decrypt_data
 from Utilities.Hash_Algorithm import hash_function
 
+import sys
+
 
 def read_from_en_file(file_name):
     with open(file_name, 'r') as file:
@@ -60,8 +62,8 @@ def decrypt(file_name, key_file, name, ext):
 
 if __name__ == '__main__':
     
-    file_name = input("Enter the file name to decrypt: ")
-    key_file = input("Enter the name of the key's file: ")
+    file_name = sys.argv[1]
+    key_file = sys.argv[2]
     name, temp, ext = file_name.split(".")
         
     success = decrypt(file_name, key_file, name, ext)

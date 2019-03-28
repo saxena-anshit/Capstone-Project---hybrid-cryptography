@@ -1,4 +1,4 @@
-from One_Time_Pad import one_time_pad_password
+from Utilities.One_Time_Pad import one_time_pad_password
 
 import unittest
 import math

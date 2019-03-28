@@ -9,7 +9,7 @@ class TestStringMethods(unittest.TestCase):
         pass
 
     def test_one_time_pad_password(self): 
-        self.assertEqual(len(one_time_pad_password()), 256)
+        self.assertEqual(len(one_time_pad_password()), 16)
 
 
 if __name__ == '__main__': 

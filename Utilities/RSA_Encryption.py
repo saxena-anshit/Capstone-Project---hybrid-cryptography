@@ -128,7 +128,7 @@ if __name__ == '__main__':
     time_start = time.time()
     decrypted_text = decrypt_data(encrypted_text, d, prime_pxq)
     time_end = time.time()
-    print("\nDecrypted message: " + decrypted_text + "\n")
+owchart    print("\nDecrypted message: " + decrypted_text + "\n")
     print("Decryption time:: " + str(time_end - time_start))
 
     print(plain_text == decrypted_text)

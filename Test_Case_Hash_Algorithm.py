@@ -1,3 +1,5 @@
+#Test case for Hash algorithm
+
 from Utilities.Hash_Algorithm import hash_function
 
 import unittest

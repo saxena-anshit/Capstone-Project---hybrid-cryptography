@@ -1,4 +1,4 @@
-from RSA_Encryption import RSA_Encryption, generate_keys, encrypt_data, decrypt_data
+from Utilities.RSA_Encryption import RSA_Encryption, generate_keys, encrypt_data, decrypt_data
 
 import unittest
 import math

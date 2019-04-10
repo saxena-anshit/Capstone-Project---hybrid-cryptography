@@ -10,19 +10,16 @@ class RSA_Encryption:
     
     def __init__(self):
         self.PRIME_NUMBER_BITS = 512
-        
 
     def generate_prime_number(self):
         return number.getPrime(self.PRIME_NUMBER_BITS)
-
 
     def modular_mult_inverse(self, num_1, num_2):
         gcd, inv = self.extended_euclid_algorithm(num_1, num_2)
         
         if gcd == 1:
             return inv % num_2
-    
-    
+
     def extended_euclid_algorithm(self, num_1, num_2):        
         x0, x1, y0, y1 = 0, 1, 1, 0
         
@@ -33,12 +30,11 @@ class RSA_Encryption:
             
         return num_2, x0
 
-
     def co_primes(self, phi):
         list_of_co_primes = []
             
         for num in range(phi - 1024, phi):
-            if math.gcd(phi, num) == 1 and self.modular_mult_inverse(num, phi) != None:
+            if math.gcd(phi, num) == 1 and self.modular_mult_inverse(num, phi) is not None:
                 list_of_co_primes.append(num)
         
         for num in list_of_co_primes:
@@ -46,7 +42,6 @@ class RSA_Encryption:
                 list_of_co_primes.remove(num)
         
         return list_of_co_primes
-
 
     '''def encrypt_string(self, plain_text, e, prime_pxq):
         return ' '.join([str(pow(ord(x), e, prime_pxq)) for x in list(plain_text)])'''
@@ -64,7 +59,6 @@ class RSA_Encryption:
         print()
 
         return encrypted_text.strip()
-    
 
     '''def decrypt_string(self, encrypted_text, d, prime_pxq):
         return ''.join([chr(pow(int(x), d, prime_pxq)) for x in encrypted_text.strip().split(' ')])'''

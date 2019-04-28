@@ -72,6 +72,7 @@
                 <script>
                     document.getElementById("myfile").onchange = function() {
                         document.getElementById("file_details").style.visibility="visible";
+                        
                         var file = this.files[0];
                         document.getElementById("file_name").innerHTML = file.name;
                         document.getElementById("file_size").innerHTML = file.size + " bytes";

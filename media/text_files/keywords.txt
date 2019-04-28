@@ -1,0 +1,5 @@
+Security through obscurity
+Incompatible timesharing system
+System security should not depend on the secrecy of the implementation or its components
+Advanced Persistent threats
+Kerckhoffs's Doctrine : A cryptosystem should be secure even if everything about the system, except the key, is public knowledge

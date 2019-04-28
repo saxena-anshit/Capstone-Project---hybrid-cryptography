@@ -8,11 +8,9 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-def home(request):
+def dashboard(request):
     return render(request, 'encrypt_decrypt/dashboard.html')
 
-def about(request):
-    return render(request, 'encrypt_decrypt/about.html')
 
 def encrypt(request):
     if request.method == 'POST' and request.FILES['myfile']:

@@ -13,8 +13,8 @@ def dashboard(request):
 
 
 def encrypt(request):
-    if request.method == 'POST' and request.FILES['myfile']:
-        myfile = request.FILES['myfile']
+    if request.method == 'POST' and request.FILES['text_file']:
+        myfile = request.FILES['text_file']
 
         text_file_path = os.path.join(BASE_DIR, 'media/text_files/')
 
@@ -30,3 +30,7 @@ def encrypt(request):
         })
         
     return render(request, 'encrypt_decrypt/encrypt_file.html')
+
+
+def decrypt(request):
+    return render(request, 'encrypt_decrypt/decrypt_file.html')

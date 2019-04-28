@@ -5,15 +5,21 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-
         <title>Encrypt-decrypt</title>
-
+        
         <!-- styles -->
         <link href="{% static 'encrypt_decrypt/css/bootstrap.css' %}" rel="stylesheet" />
         <link href="{% static 'encrypt_decrypt/css/bootstrap-responsice.css' %}" rel="stylesheet" />
         <link href="{% static 'encrypt_decrypt/css/animate.css' %}" rel="stylesheet" />
         <link href="{% static 'encrypt_decrypt/css/style.css' %}" rel="stylesheet" />
         <link href="{% static 'encrypt_decrypt/color/default.css' %}" rel="stylesheet" />
+
+        <style>
+            table, th, td {
+                border: solid black 1px;
+                text-align: center;
+            }
+        </style>
     </head>
 
     <body>
@@ -39,60 +45,48 @@
         <br>
         <br>
         <br>
-    
+        
         <section class="container">
             <div id="fileChoose">
 
-                <!--choose plaintext file-->
-                <form method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <input type="file" name="text_file" id="text_file">
-                    <button type="submit">Upload and Encrypt</button>
-                </form>
+                <h4>Choose a file to decrypt:</h4>
+                <br>
 
-                <ul id="file_details" style="visibility: hidden">
-                    <li>
-                        File name : <span id="file_name"></span>
-                    </li>
-                    <li>
-                        File size : <span id="file_size"></span>
-                    </li>
-                    <li>
-                        File type : <span id="file_type"></span>
-                    </li>
-                    <a href="">Wrong File!</a>
-                </ul>
-
-                <script>
-                    document.getElementById("text_file").onchange = function() {
-                        document.getElementById("file_details").style.visibility="visible";
-                        
-                        var file = this.files[0];
-                        document.getElementById("file_name").innerHTML = file.name;
-                        document.getElementById("file_size").innerHTML = file.size + " bytes";
-                        document.getElementById("file_type").innerHTML = file.type;
-                    };
-                </script>
-
-                {% if uploaded_file_url %}
-                    <h3 class="alert-success">File Encryption Successful!</h3>
-                {% endif %}
+                <!--choose encrypted file-->
+                <table style="width:100%">
+                    <thead>
+                        <th>File_Name</th>
+                        <th>File_Size</th>
+                        <th>File_Type</th>
+                    </thead>
+                    <tbody id="table_body"></tbody>
+                </table>
                 
                 <br>
                 <br>
-
-                <!--Upload encrypted files to firebase-->
-                <h5>Choose encrypted file to upload:</h5>
+                <h4>Upload key to Decrypt:</h4>
                 <br>
-                <input type="file" value="upload" id="fileButton"/>
-            </div> 
-        </section>
+
+                <!--Choose public key-->
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="file" name="public_key" id="public_key">
+                    <button type="submit">Decrypt File</button>
+                </form>
+
+                <br>
+                <br>
+
+                <!--decrypt button-->
+                <input type="submit" value="Decrypt" />
+                <br>
+                <br>
+            </section>
 
         <!-- Javascript Library Files -->
         <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
 
         <script>
-
             // Initialize Firebase
             var config = {
                 apiKey: "AIzaSyCsXS_QZVSiH4P3udHFyT90YPpbsgsmMs4",
@@ -104,34 +98,33 @@
             };
             firebase.initializeApp(config);
 
-            //Get elements for upload
-            var fileButton = document.getElementById('fileButton');
+            var table_rows = document.getElementById('table_body');
 
-            //Listen for file selector
-            fileButton.addEventListener('change',function(e){
+            var databaseRef = firebase.database().ref();
 
-                //Get File
-                var file = e.target.files[0];
+            databaseRef.on("value", function(snapshot) {
+                var snap_objects = snapshot.val();
 
-                //create storage ref
-                var storageRef = firebase.storage().ref('encrypted_files/' + file.name);
-                var file_name = file.name.split(".")[0];
-                var file_size = file.size;
-                var file_type = file.type;
-
-                // Get a reference to the database service
-                var databaseRef = firebase.database().ref(file_name + "/");
-                databaseRef.set({
-                    file_name : file.name,
-                    file_type : file_type,
-                    file_size : file_size
-                });
-
-                //upload file
-                var task = storageRef.put(file);
-                alert("File uploaded!")
-
+                for (var e in snap_objects) {
+                    for (var i in snap_objects[e]) {
+                        console.log(snap_objects[e][i])
+                        table_rows.innerHTML += `<tr>
+                        <td>` + snap_objects[e]["file_name"] + `</td>
+                        <td>` + snap_objects[e]["file_size"] + `</td>
+                        <td>` + snap_objects[e]["file_type"] + `</td>
+                        </tr>`;
+                    }
+                }
+                }, function (error) {
+                    console.log("Error: " + error.code);
             });
+            
+            //create storage ref
+            /*var rootRef = firebase.storage().ref().child("encrypted_files/");
+            
+            rootRef.on("child_added",snap=> {
+                alert(snap.val());
+            });*/
         </script>
 
         <script src="{% static 'encrypt_decrypt/js/jquery.min.js' %}"></script>
@@ -140,7 +133,7 @@
         <script src="{% static 'encrypt_decrypt/js/parallax/jquery.parallax-1.1.3.js' %}"></script>
         <script src="{% static 'encrypt_decrypt/js/nagging-menu.js' %}"></script>
         <script src="{% static 'encrypt_decrypt/js/jquery.nav.js' %}"></script>
-        
+
         <!-- Template Custom Javascript File -->
         <script src="{% static 'encrypt_decrypt/js/custom.js' %}"></script>
     </body>

@@ -52,9 +52,36 @@
                 <!--choose plaintext file-->
                 <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <input type="file" name="myfile">
+                    <input type="file" name="myfile" id="myfile">
                     <button type="submit">Upload and Encrypt</button>
                 </form>
+
+                <ul id="file_details" style="visibility: hidden">
+                    <li>
+                        File name : <span id="file_name"></span>
+                    </li>
+                    <li>
+                        File size : <span id="file_size"></span>
+                    </li>
+                    <li>
+                        File type : <span id="file_type"></span>
+                    </li>
+                    <a href="">Wrong File!</a>
+                </ul>
+
+                <script>
+                    document.getElementById("myfile").onchange = function() {
+                        document.getElementById("file_details").style.visibility="visible";
+                        var file = this.files[0];
+                        document.getElementById("file_name").innerHTML = file.name;
+                        document.getElementById("file_size").innerHTML = file.size + " bytes";
+                        document.getElementById("file_type").innerHTML = file.type;
+                    };
+                </script>
+
+                {% if uploaded_file_url %}
+                    <h3 class="alert-success">File Encryption Successful!</h3>
+                {% endif %}
                 
                 <br>
                 <br>
@@ -118,9 +145,7 @@
         <script src="{% static 'encrypt_decrypt/js/nagging-menu.js' %}"></script>
         <script src="{% static 'encrypt_decrypt/js/jquery.nav.js' %}"></script>
         
-        
         <!-- Template Custom Javascript File -->
         <script src="{% static 'encrypt_decrypt/js/custom.js' %}"></script>
-
     </body>
 </html>

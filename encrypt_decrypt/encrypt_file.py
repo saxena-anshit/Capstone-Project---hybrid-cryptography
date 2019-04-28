@@ -30,7 +30,7 @@ def save_keys(keys, file_name):
         file.write(key_file)
         
     public_key_path = os.path.join(
-        BASE_DIR, 'media/public_keys/' + 'public_key' + file_name + '.txt')
+        BASE_DIR, 'media/public_keys/' + 'public_key_' + file_name + '.txt')
 
     with open(public_key_path, 'w') as file:
         concat_keys = str(keys[0]) + ' ' + str(keys[2]) + ' ' + str(keys[3])

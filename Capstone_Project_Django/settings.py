@@ -6,11 +6,12 @@ SECRET_KEY = '6qly7(b=^4$bmgxquc#9f*-z*#)^yuc$g+@gx4ej6r4us5r&#8'
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'localhost']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
     'encrypt_decrypt.apps.EncryptDecryptConfig',
+    'users.apps.UsersConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',

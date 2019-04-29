@@ -29,6 +29,15 @@
                                 <h1 style="color:white">Encrypt-Decrypt</h1> 	
                             </a>
                         </div>
+                        <div class="navigation ">
+                            <nav>
+                                <ul class="nav pull-right">
+                                    {% if user.is_authenticated %}
+                                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                                    {% endif %}
+                                </ul>
+                            </nav>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -41,6 +50,7 @@
         <br>
         <br>
         <br>
+        
         <center>
         <section class="container">
             <div id="fileChoose">

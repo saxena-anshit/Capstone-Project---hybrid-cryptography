@@ -78,7 +78,7 @@
                     <div class="container">
                         <div class="logo">
                             <a href="{% url 'cloud-home' %}">
-                            <h1 style="color:white">Encrypt-Decrypt</h1> 	
+                                <h1 style="color:white">Encrypt-Decrypt</h1> 	
                             </a>
                         </div>
                         <div class="navigation ">
@@ -96,10 +96,9 @@
                     </div>
                 </div>
             </div>
-            <!-- end top -->
         </header>
 
-    <!-- section intro -->
+        <!-- section intro -->
         <section id="intro">
             <div class="slogan">
                 <div>
@@ -111,20 +110,17 @@
                         {% endfor %}
                     {% endif %}
                 </div>
-
-
                 <div class="icon">
                     <img src="{% static 'encrypt_decrypt/img/bg/data-encryption.png' %}">
                 </div>
+
                 <br>
                 <br>
                 <br>
+
                 <!--choose to encrypt/decrypt-->
-                
                 <ul>
                     <a href="{% url 'cloud-encrypt' %}"><button class="fill" class="col-lg-2">Encrypt</button></a>
-
-
                     <a href="{% url 'cloud-decrypt' %}"><button class="fill" class="col-lg-2">Decrypt</button></a>
                 </ul>
             </div>

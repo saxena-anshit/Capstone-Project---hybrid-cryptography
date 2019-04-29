@@ -2,7 +2,9 @@ from .utilities.rsa_encryption import decrypt_data
 from .utilities.hash_algorithm import hash_function
 
 import base64
+import os
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 def read_from_en_file(file_name):
     with open(file_name, 'r') as file:
@@ -16,7 +18,9 @@ def read_keys(key_file):
     
     
 def write_to_de_file(decrypted_text, name, ext):
-    with open(name + '.de.' + ext, 'wb') as file:
+    decrypted_file_path = os.path.join(BASE_DIR, 'media/' + name + '.' + ext)
+
+    with open(decrypted_file_path, 'wb') as file:
         file.write(decrypted_text.encode("utf-8"))
         
     return True
@@ -60,13 +64,6 @@ def decrypt(file_name, key_file, name, ext):
     return False
 
 
-if __name__ == '__main__':
-    
-    file_name = input("Enter the file name to decrypt: ")
-    key_file = input("Enter the name of the key's file: ")
-    name, temp, ext = file_name.split(".")
-        
-    success = decrypt(file_name, key_file, name, ext)
-    
-    if success:
-        print("\nFile Decryption Successful")
+def read_file_dec(enc_file_path, public_key_path, file_name):
+    name, ext, temp = file_name.split(".")
+    decrypt(enc_file_path, public_key_path, name, ext)

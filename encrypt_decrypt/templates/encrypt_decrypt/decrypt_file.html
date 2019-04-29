@@ -60,45 +60,65 @@
         <br>
         <br>
         <br>
+
         <center>
-        <section class="container">
-            <div id="fileChoose">
+            <section class="container">
+                <div id="fileChoose">
 
-                <h4>Choose a file to decrypt:</h4>
-                <br>
+                    <h4>List of files available to decrypt:</h4>
+                    <br>
 
-                <!--choose encrypted file-->
-                <table style="width:100%">
-                    <thead>
-                        <th>File_Name</th>
-                        <th>File_Size</th>
-                        <th>File_Type</th>
-                    </thead>
-                    <tbody id="table_body"></tbody>
-                </table>
-                
-                <br>
-                <br>
-                <h4>Upload key to Decrypt:</h4>
-                <br>
+                    <!--choose encrypted file-->
+                    <table style="width:100%">
+                        <thead>
+                            <th>File_Name</th>
+                            <th>File_Size</th>
+                            <th>File_Type</th>
+                        </thead>
+                        <tbody id="table_body"></tbody>
+                    </table>
 
-                <!--Choose public key-->
-                <form method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <input type="file" name="public_key" id="public_key">
-                    <button type="submit">Decrypt File</button>
-                </form>
-                <br>
-                <br>
+                    <br>
+                    <br>
+                    <h4>Upload Encrypted File:</h4>
+                    <br>
 
-                <!--decrypt button-->
-                <input type="submit" value="Decrypt" />
-                <br>
-                <br>
-           
+                    <!--Choose public key-->
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="file" name="enc_file" id="enc_file">
+                        <button type="submit">Decrypt</button>
+                    </form>
+                    
+                    <br>
+                    <!--<br>
+                    <h4>Upload key to Decrypt:</h4>
+                    <br>
 
+                    Choose public key
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="file" name="public_key" id="public_key">
+                        <button type="submit">Decrypt File</button>
+                    </form>
+                    <br>-->
+                    <br>
+
+                    {% if uploaded_file_url %}
+                        <h3 class="alert-success">File Decryption Successful!</h3>
+                        <div>
+                            <a href="{{ uploaded_file_url }}">
+                                Show File Contents!
+                            </a>
+                        </div>
+                    {% endif %}
+
+                    <br>
+                    <br>
+                </div>        
             </section>
         </center>
+
         <!-- Javascript Library Files -->
         <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
 
@@ -122,25 +142,16 @@
                 var snap_objects = snapshot.val();
 
                 for (var e in snap_objects) {
-                    for (var i in snap_objects[e]) {
-                        console.log(snap_objects[e][i])
-                        table_rows.innerHTML += `<tr>
-                        <td>` + snap_objects[e]["file_name"] + `</td>
-                        <td>` + snap_objects[e]["file_size"] + `</td>
-                        <td>` + snap_objects[e]["file_type"] + `</td>
+                    table_rows.innerHTML += `
+                        <tr>
+                            <td>` + snap_objects[e]["file_name"] + `</td>
+                            <td>` + snap_objects[e]["file_size"] + `</td>
+                            <td>` + snap_objects[e]["file_type"] + `</td>
                         </tr>`;
-                    }
                 }
                 }, function (error) {
                     console.log("Error: " + error.code);
             });
-            
-            //create storage ref
-            /*var rootRef = firebase.storage().ref().child("encrypted_files/");
-            
-            rootRef.on("child_added",snap=> {
-                alert(snap.val());
-            });*/
         </script>
 
         <script src="{% static 'encrypt_decrypt/js/jquery.min.js' %}"></script>

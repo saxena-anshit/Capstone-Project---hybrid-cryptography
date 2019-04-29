@@ -101,11 +101,21 @@
                     };
                 </script>
 
-                {% if uploaded_file_url %}
+                {% if enc_file_path %}
                     <h3 class="alert-success">File Encryption Successful!</h3>
+                    <div>
+                        <a href="{{ enc_file_path }}">
+                            Download Encrypted File
+                        </a>
+                    </div>
+                    <div>
+                        <a href="{{ public_key_path }}">
+                            Save the Decryption Key of this file!
+                        </a>
+                    </div>
                 {% endif %}
                 <!--Upload encrypted files to firebase-->
-                <h5>Choose encrypted file to upload:</h5>
+                <h5>Select Encrypted File to Upload to Firebase Cloud:</h5>
                 <br>
                 <input type="file" value="upload" id="fileButton"/>
             </div> 

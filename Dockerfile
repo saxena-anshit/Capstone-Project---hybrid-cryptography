@@ -6,6 +6,7 @@ ENV PYTHONUNBUFFERED 1
 
 RUN pip install pycrypto
 RUN pip install django
+RUN pip install django-jenkins
 RUN pip install django-crispy-forms
 
 RUN mkdir /project

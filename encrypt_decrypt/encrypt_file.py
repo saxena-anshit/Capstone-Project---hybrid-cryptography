@@ -9,7 +9,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 def write_to_en_file(encrypted_file, name, ext):
-    encrypted_file_path = os.path.join(BASE_DIR, 'media/encrypted_files/' + name + '.' + ext)
+    encrypted_file_path = os.path.join(BASE_DIR, 'media/' + name + '.' + ext + '.sh')
 
     with open(encrypted_file_path, 'w') as file:
         file.write(encrypted_file)
@@ -18,19 +18,8 @@ def write_to_en_file(encrypted_file, name, ext):
 
 
 def save_keys(keys, file_name):
-    private_key_path = os.path.join(
-        BASE_DIR, 'media/private_keys/' + 'private_key_' + file_name + '.txt')
-
-    with open(private_key_path, 'w') as file:
-        
-        concat_keys = str(keys[0]) + ' ' + str(keys[1]) + ' ' + str(keys[3])
-        base64_key = base64.b64encode(concat_keys.encode('utf-8'))
-        
-        key_file = '-----BEGIN OF RSA PRIVATE KEY-----\n' + str(base64_key.decode('utf-8')) + '\n-----END OF RSA PRIVATE KEY-----'
-        file.write(key_file)
-        
     public_key_path = os.path.join(
-        BASE_DIR, 'media/public_keys/' + 'public_key_' + file_name + '.txt')
+        BASE_DIR, 'media/' + file_name + '_public_key' + '.sh')
 
     with open(public_key_path, 'w') as file:
         concat_keys = str(keys[0]) + ' ' + str(keys[2]) + ' ' + str(keys[3])
@@ -86,6 +75,6 @@ def encrypt(plain_text, file_name):
     
     return True
 
-def read_file(file_path, file_name):
+def read_file_enc(file_path, file_name):
     plain_text = open(file_path, 'rb').read().decode("utf-8")
     encrypt(plain_text, file_name)

@@ -14,6 +14,8 @@
         <link href="{% static 'encrypt_decrypt/css/animate.css' %}" rel="stylesheet" />
         <link href="{% static 'encrypt_decrypt/css/style.css' %}" rel="stylesheet" />
         <link href="{% static 'encrypt_decrypt/color/default.css' %}" rel="stylesheet" />
+       
+        
     </head>
 
     <body>
@@ -39,13 +41,16 @@
         <br>
         <br>
         <br>
-    
+        <center>
         <section class="container">
             <div id="fileChoose">
 
                 <!--choose plaintext file-->
                 <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
+                    <h5>Choose plain text to upload:</h5>
+                    <br>
+                    <br>
                     <input type="file" name="text_file" id="text_file">
                     <button type="submit">Upload and Encrypt</button>
                 </form>
@@ -77,16 +82,13 @@
                 {% if uploaded_file_url %}
                     <h3 class="alert-success">File Encryption Successful!</h3>
                 {% endif %}
-                
-                <br>
-                <br>
-
                 <!--Upload encrypted files to firebase-->
                 <h5>Choose encrypted file to upload:</h5>
                 <br>
                 <input type="file" value="upload" id="fileButton"/>
             </div> 
         </section>
+     </center>
 
         <!-- Javascript Library Files -->
         <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>

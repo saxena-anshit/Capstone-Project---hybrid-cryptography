@@ -1,0 +1,4 @@
+django
+django-jenkins
+django-crispy-forms
+pycrypto

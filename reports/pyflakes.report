@@ -1,0 +1,22 @@
+encrypt_decrypt/views.py:2: [E] PYFLAKES:'django.http.HttpResponse' imported but unused
+encrypt_decrypt/tests.py:2: [E] PYFLAKES:'.utilities.rsa_encryption.generate_keys' imported but unused
+encrypt_decrypt/tests.py:2: [E] PYFLAKES:'.utilities.rsa_encryption.encrypt_data' imported but unused
+encrypt_decrypt/tests.py:2: [E] PYFLAKES:'.utilities.rsa_encryption.decrypt_data' imported but unused
+encrypt_decrypt/models.py:1: [E] PYFLAKES:'django.db.models' imported but unused
+encrypt_decrypt/admin.py:1: [E] PYFLAKES:'django.contrib.admin' imported but unused
+../../../../../anaconda3/lib/python3.7/site-packages/crispy_forms/compatibility.py:4: [E] PYFLAKES:undefined name 'basestring'
+../../../../../anaconda3/lib/python3.7/site-packages/crispy_forms/compatibility.py:15: [E] PYFLAKES:undefined name 'unicode'
+../../../../../anaconda3/lib/python3.7/site-packages/crispy_forms/compatibility.py:18: [E] PYFLAKES:undefined name 'long'
+../../../../../anaconda3/lib/python3.7/site-packages/crispy_forms/tests/test_form_helper.py:585: [E] PYFLAKES:redefinition of unused 'test_bootstrap_form_show_errors' from line 557
+../../../../../anaconda3/lib/python3.7/site-packages/crispy_forms/tests/test_form_helper.py:689: [E] PYFLAKES:redefinition of unused 'test_error_and_help_inline' from line 659
+../../../../../anaconda3/lib/python3.7/site-packages/crispy_forms/templatetags/crispy_forms_tags.py:15: [E] PYFLAKES:'from crispy_forms.templatetags.crispy_forms_filters import *' used; unable to detect undefined names
+../../../../../anaconda3/lib/python3.7/site-packages/crispy_forms/templatetags/crispy_forms_tags.py:15: [E] PYFLAKES:'crispy_forms.templatetags.crispy_forms_filters.*' imported but unused
+../../../../../anaconda3/lib/python3.7/site-packages/crispy_forms/templatetags/crispy_forms_field.py:146: [E] PYFLAKES:use ==/!= to compare str, bytes, and int literals
+users/views.py:12: [E] PYFLAKES:local variable 'username' is assigned to but never used
+users/tests.py:1: [E] PYFLAKES:'django.test.TestCase' imported but unused
+users/models.py:1: [E] PYFLAKES:'django.db.models' imported but unused
+users/admin.py:1: [E] PYFLAKES:'django.contrib.admin' imported but unused
+../../../../../anaconda3/lib/python3.7/site-packages/django/contrib/messages/__init__.py:1: [E] PYFLAKES:'from django.contrib.messages.api import *' used; unable to detect undefined names
+../../../../../anaconda3/lib/python3.7/site-packages/django/contrib/messages/__init__.py:1: [E] PYFLAKES:'django.contrib.messages.api.*' imported but unused
+../../../../../anaconda3/lib/python3.7/site-packages/django/contrib/messages/__init__.py:2: [E] PYFLAKES:'from django.contrib.messages.constants import *' used; unable to detect undefined names
+../../../../../anaconda3/lib/python3.7/site-packages/django/contrib/messages/__init__.py:2: [E] PYFLAKES:'django.contrib.messages.constants.*' imported but unused

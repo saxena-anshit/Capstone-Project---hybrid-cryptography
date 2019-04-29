@@ -15,9 +15,58 @@
         <link href="{% static 'encrypt_decrypt/color/default.css' %}" rel="stylesheet" />
 
         <style>
-            .Buttons{
+            /*.Buttons{
                 text-align: center;
-            }
+                font-size: 110%;
+                color: black;
+
+            }*/
+            button {
+  position: relative;
+  //display:block;
+  height: 145px;
+  width: 300px;
+  margin: 10px 100px;
+  padding: 5px 5px;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 2px;
+  color: white;
+  border: 2px white solid;
+  border-radius: 4px;
+  text-transform: uppercase;
+  outline: 0;
+  overflow:hidden;
+  background: none;
+  z-index: 1;
+  cursor: pointer;
+  transition:         0.08s ease-in;
+  -o-transition:      0.08s ease-in;
+  -ms-transition:     0.08s ease-in;
+  -moz-transition:    0.08s ease-in;
+  -webkit-transition: 0.08s ease-in;
+}
+
+.fill:hover {
+  color: whitesmoke;
+}
+
+.fill:before {
+  content: "";
+  position: absolute;
+  background:grey;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 100%;
+  z-index: -1;
+  -webkit-transition: top 0.09s ease-in;
+}
+
+.fill:hover:before {
+  top: 0;
+  
+}
         </style>
     </head>
 
@@ -36,7 +85,7 @@
                         <div class="navigation ">
                             <nav>
                             <ul class="nav pull-right">
-                                <li><a href="login.html">Login</a></li>
+                                <li><a href="signup.html">Signup</a></li>
                                 <li><a href="signup.html">Signup</a></li>
                             </ul>
                             </nav>
@@ -53,16 +102,16 @@
                 <div class="icon">
                     <img src="{% static 'encrypt_decrypt/img/bg/data-encryption.png' %}">
                 </div>
-                
+                <br>
+                <br>
+                <br>
                 <!--choose to encrypt/decrypt-->
-                <h3 style="color:white">Choose:</h3>
+                
                 <ul>
-                    <li><a href="{% url 'cloud-encrypt' %}"style="color:white">Encrypt</a></li>
+                    <a href="{% url 'cloud-encrypt' %}"><button class="fill">Encrypt</button></a>
 
-                    <br>
-                    <br>
 
-                    <li><a href="{% url 'cloud-decrypt' %}"style="color:white">Decrypt</a></li>
+                    <a href="{% url 'cloud-decrypt' %}"><button class="fill">Decrypt</button></a>
                 </ul>
             </div>
         </section>

@@ -14,9 +14,21 @@
         <link href="{% static 'encrypt_decrypt/css/animate.css' %}" rel="stylesheet" />
         <link href="{% static 'encrypt_decrypt/css/style.css' %}" rel="stylesheet" />
         <link href="{% static 'encrypt_decrypt/color/default.css' %}" rel="stylesheet" />
-       
+        <style>
+        form{
+            margin: 20px;
+            border: black 1px solid;
+        }
+        ul{
+            list-style-type: circle;
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        </style>
         
     </head>
+
 
     <body>
         <header>
@@ -53,7 +65,7 @@
                     <br>
                     <input type="file" name="text_file" id="text_file">
                     <button type="submit">Upload and Encrypt</button>
-                </form>
+                
 
                 <ul id="file_details" style="visibility: hidden">
                     <li>
@@ -67,7 +79,7 @@
                     </li>
                     <a href="">Wrong File!</a>
                 </ul>
-
+            </form>
                 <script>
                     document.getElementById("text_file").onchange = function() {
                         document.getElementById("file_details").style.visibility="visible";

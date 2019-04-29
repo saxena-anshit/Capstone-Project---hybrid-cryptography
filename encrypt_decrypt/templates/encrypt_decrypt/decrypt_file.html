@@ -18,7 +18,13 @@
             table, th, td {
                 border: solid black 1px;
                 text-align: center;
+
             }
+            th,td{
+                padding: 15px;
+            }
+            tr:hover {background-color: gainsboro;}
+            
         </style>
     </head>
 
@@ -45,7 +51,7 @@
         <br>
         <br>
         <br>
-        
+        <center>
         <section class="container">
             <div id="fileChoose">
 
@@ -73,7 +79,6 @@
                     <input type="file" name="public_key" id="public_key">
                     <button type="submit">Decrypt File</button>
                 </form>
-
                 <br>
                 <br>
 
@@ -81,8 +86,10 @@
                 <input type="submit" value="Decrypt" />
                 <br>
                 <br>
-            </section>
+           
 
+            </section>
+        </center>
         <!-- Javascript Library Files -->
         <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
 

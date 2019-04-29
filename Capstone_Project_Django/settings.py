@@ -11,6 +11,7 @@ ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'localhost']
 INSTALLED_APPS = [
     'django.contrib.admin',
     'encrypt_decrypt.apps.EncryptDecryptConfig',
+    'crispy_forms',
     'users.apps.UsersConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -85,3 +86,8 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_REDIRECT_URL = 'cloud-home'
+LOGIN_URL = 'login'

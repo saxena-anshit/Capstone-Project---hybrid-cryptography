@@ -115,6 +115,7 @@
 
                 //create storage ref
                 var storageRef = firebase.storage().ref('encrypted_files/' + file.name);
+                
                 var file_name = file.name.split(".")[0];
                 var file_size = file.size;
                 var file_type = file.type;

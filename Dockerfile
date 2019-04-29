@@ -14,6 +14,7 @@ RUN pip3 install --upgrade pip
 
 RUN pip install pycrypto
 RUN pip install django
+RUN pip install django-crispy-forms
 RUN pip install gunicorn
 
 RUN mkdir /app

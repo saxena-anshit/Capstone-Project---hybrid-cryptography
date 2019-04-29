@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from django.core.files.storage import FileSystemStorage
 
 from .encrypt_file import read_file
@@ -13,6 +13,7 @@ def dashboard(request):
     return render(request, 'encrypt_decrypt/dashboard.html')
 
 
+@login_required
 def encrypt(request):
     if request.method == 'POST' and request.FILES['text_file']:
         myfile = request.FILES['text_file']
@@ -33,5 +34,6 @@ def encrypt(request):
     return render(request, 'encrypt_decrypt/encrypt_file.html')
 
 
+@login_required
 def decrypt(request):
     return render(request, 'encrypt_decrypt/decrypt_file.html')

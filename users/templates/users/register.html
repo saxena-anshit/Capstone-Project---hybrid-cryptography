@@ -23,25 +23,59 @@
     </head>
 
     <body>
-        <div class=" container content-section">
-            <form method="POST">
-                {% csrf_token %}
-                <fieldset class="form-group">
-                    <legend class="border-bottom mb-4">
-                        Join Today
-                    </legend>
-                    {{ form|crispy }}
-                </fieldset>
-                <div class="form-group">
-                    <button class="btn btn-outline-info" type="submit">Sign Up</button>
+        <header>
+            <!-- start top -->
+            <div id="topnav" class="navbar navbar-fixed-top default">
+                <div class="navbar-inner">
+                    <div class="container">
+                        <div class="logo">
+                            <a href="{% url 'cloud-home' %}">
+                                <h1 style="color:white">Encrypt-Decrypt</h1> 	
+                            </a>
+                        </div>
+                        <div class="navigation ">
+                            <nav>
+                                <ul class="nav pull-right">
+                                    <li><a href="{% url 'login' %}">Login</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
                 </div>
-            </form>
-            <div class="border-top pt-3">
-                <small class="text-muted">
-                    Already Have An Account?
-                    <a href="{% url 'login' %}" class="ml-2">Sign In</a>
-                </small>
             </div>
-        </div>
+        </header>
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <section class="container">
+            <div class="content-section">
+                <div class=" container content-section">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <fieldset class="form-group">
+                            <legend class="border-bottom mb-4">
+                                Join Today
+                            </legend>
+                            {{ form|crispy }}
+                        </fieldset>
+                        <div class="form-group">
+                            <button class="btn btn-outline-info" type="submit">Sign Up</button>
+                        </div>
+                    </form>
+                    <div class="border-top pt-3">
+                        <small class="text-muted">
+                            Already Have An Account?
+                            <a href="{% url 'login' %}" class="ml-2">Sign In</a>
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </section>
     </body>
 </html>

@@ -15,20 +15,17 @@
         <link href="{% static 'encrypt_decrypt/css/style.css' %}" rel="stylesheet" />
         <link href="{% static 'encrypt_decrypt/color/default.css' %}" rel="stylesheet" />
         <style>
-        form{
-            margin: 20px;
-            border: black 1px solid;
-        }
-        ul{
-            list-style-type: circle;
-            margin: 0px;
-            padding: 0px;
-        }
-        
+            form {
+                margin: 20px;
+                border: black 1px solid;
+            }
+            ul {
+                list-style-type: circle;
+                margin: 25px;
+                padding: 0px;
+            }
         </style>
-        
     </head>
-
 
     <body>
         <header>
@@ -45,6 +42,7 @@
                             <nav>
                                 <ul class="nav pull-right">
                                     {% if user.is_authenticated %}
+                                        <li><a href="{% url 'cloud-decrypt' %}">Decrypt</a></li>
                                         <li><a href="{% url 'logout' %}">Logout</a></li>
                                     {% endif %}
                                 </ul>
@@ -64,63 +62,65 @@
         <br>
         
         <center>
-        <section class="container">
-            <div id="fileChoose">
+            <section class="container">
+                <div id="fileChoose">
 
-                <!--choose plaintext file-->
-                <form method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <h5>Choose plain text to upload:</h5>
+                    <h5>Encrypted Files will be deleted from the local Server</h5>
+                    <h5>To store the files upload them to the cloud</h5>
+
+                    <!--choose plaintext file-->
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <h5>Choose plain text to upload:</h5>
+                        <br>
+                        <br>
+                        <input type="file" name="text_file" id="text_file">
+                        <button type="submit">Upload and Encrypt</button>
+                    
+
+                    <ul id="file_details" style="visibility: hidden">
+                        <li>
+                            File name : <span id="file_name"></span>
+                        </li>
+                        <li>
+                            File size : <span id="file_size"></span>
+                        </li>
+                        <li>
+                            File type : <span id="file_type"></span>
+                        </li>
+                        <a href="">Wrong File!</a>
+                    </ul>
+                </form>
+                    <script>
+                        document.getElementById("text_file").onchange = function() {
+                            document.getElementById("file_details").style.visibility="visible";
+                            
+                            var file = this.files[0];
+                            document.getElementById("file_name").innerHTML = file.name;
+                            document.getElementById("file_size").innerHTML = file.size + " bytes";
+                            document.getElementById("file_type").innerHTML = file.type;
+                        };
+                    </script>
+
+                    {% if enc_file_path %}
+                        <h3 class="alert-success">File Encryption Successful!</h3>
+                        <div>
+                            <a href="{{ enc_file_path }}">
+                                Download Encrypted File!
+                            </a>
+                            <a href="{{ public_key_path }}">
+                                Save the Decryption Key of this file!
+                            </a>
+                        </div>
+                    {% endif %}
+
+                    <!--Upload encrypted files to firebase-->
+                    <h5>Select Encrypted File to Upload to Firebase Cloud:</h5>
                     <br>
-                    <br>
-                    <input type="file" name="text_file" id="text_file">
-                    <button type="submit">Upload and Encrypt</button>
-                
-
-                <ul id="file_details" style="visibility: hidden">
-                    <li>
-                        File name : <span id="file_name"></span>
-                    </li>
-                    <li>
-                        File size : <span id="file_size"></span>
-                    </li>
-                    <li>
-                        File type : <span id="file_type"></span>
-                    </li>
-                    <a href="">Wrong File!</a>
-                </ul>
-            </form>
-                <script>
-                    document.getElementById("text_file").onchange = function() {
-                        document.getElementById("file_details").style.visibility="visible";
-                        
-                        var file = this.files[0];
-                        document.getElementById("file_name").innerHTML = file.name;
-                        document.getElementById("file_size").innerHTML = file.size + " bytes";
-                        document.getElementById("file_type").innerHTML = file.type;
-                    };
-                </script>
-
-                {% if enc_file_path %}
-                    <h3 class="alert-success">File Encryption Successful!</h3>
-                    <div>
-                        <a href="{{ enc_file_path }}">
-                            Download Encrypted File
-                        </a>
-                    </div>
-                    <div>
-                        <a href="{{ public_key_path }}">
-                            Save the Decryption Key of this file!
-                        </a>
-                    </div>
-                {% endif %}
-                <!--Upload encrypted files to firebase-->
-                <h5>Select Encrypted File to Upload to Firebase Cloud:</h5>
-                <br>
-                <input type="file" value="upload" id="fileButton"/>
-            </div> 
-        </section>
-     </center>
+                    <input type="file" value="upload" id="fileButton"/>
+                </div> 
+            </section>
+        </center>
 
         <!-- Javascript Library Files -->
         <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>

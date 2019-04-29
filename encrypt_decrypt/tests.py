@@ -1,5 +1,8 @@
 from django.test import TestCase
 from .utilities.rsa_encryption import RSA_Encryption, generate_keys, encrypt_data, decrypt_data
+from .utilities.hash_algorithm import hash_function
+
+import hashlib
 
 class RSAEncryptionTestCase(TestCase):
 
@@ -30,21 +33,6 @@ class RSAEncryptionTestCase(TestCase):
     def test_5_generate_prime_number(self):
         self.assertTrue(self.is_prime(RSA_Encryption().generate_prime_number()))
 
-    def test_6_generate_prime_number(self):
-        self.assertTrue(self.is_prime(RSA_Encryption().generate_prime_number()))
-
-    def test_7_generate_prime_number(self):
-        self.assertTrue(self.is_prime(RSA_Encryption().generate_prime_number()))
-
-    def test_8_generate_prime_number(self):
-        self.assertTrue(self.is_prime(RSA_Encryption().generate_prime_number()))
-
-    def test_9_generate_prime_number(self):
-        self.assertTrue(self.is_prime(RSA_Encryption().generate_prime_number()))
-
-    def test_10_generate_prime_number(self):
-        self.assertTrue(self.is_prime(RSA_Encryption().generate_prime_number()))
-
     def test_1_modular_mult_inverse(self):
         self.assertEqual(RSA_Encryption().modular_mult_inverse(1000619, 1001640), 282539)
 
@@ -59,21 +47,6 @@ class RSAEncryptionTestCase(TestCase):
 
     def test_5_modular_mult_inverse(self):
         self.assertEqual(RSA_Encryption().modular_mult_inverse(1000633, 1001640), 594817)
-
-    def test_6_modular_mult_inverse(self):
-        self.assertEqual(RSA_Encryption().modular_mult_inverse(1000639, 1001640), 61039)
-
-    def test_7_modular_mult_inverse(self):
-        self.assertEqual(RSA_Encryption().modular_mult_inverse(1000643, 1001640), 342587)
-
-    def test_8_modular_mult_inverse(self):
-        self.assertEqual(RSA_Encryption().modular_mult_inverse(1000649, 1001640), 245609)
-
-    def test_9_modular_mult_inverse(self):
-        self.assertEqual(RSA_Encryption().modular_mult_inverse(1000651, 1001640), 761611)
-
-    def test_10_modular_mult_inverse(self):
-        self.assertEqual(RSA_Encryption().modular_mult_inverse(1000657, 1001640), 812113)
 
     def test_1_encrypt_string(self):
         self.assertEqual(RSA_Encryption().encrypt_string("hello", 47, 143), "91 95 114 114 67")
@@ -147,3 +120,18 @@ class RSAEncryptionTestCase(TestCase):
     def test_10_decrypt_string(self):
         self.assertEqual(RSA_Encryption().decrypt_string("13 92 98 22 23 32 118 11 39 87 98 98 98", 23, 143),
                          "45678Linux666")
+
+    def test_1_modular_hash_function(self):		 
+        self.assertEqual(hash_function("hello"), hashlib.sha256("hello".encode('utf-8')).hexdigest())
+
+    def test_2_modular_hash_function(self):		 
+        self.assertEqual(hash_function("Abdemanaaf"), hashlib.sha256("Abdemanaaf".encode('utf-8')).hexdigest())
+
+    def test_3_modular_hash_function(self):		 
+        self.assertEqual(hash_function("123456789"), hashlib.sha256("123456789".encode('utf-8')).hexdigest())
+
+    def test_4_modular_hash_function(self):		 
+        self.assertEqual(hash_function("Abde@1998"), hashlib.sha256("Abde@1998".encode('utf-8')).hexdigest())
+
+    def test_5_modular_hash_function(self):		 
+        self.assertEqual(hash_function("1234@#$,...hello"), hashlib.sha256("1234@#$,...hello".encode('utf-8')).hexdigest())

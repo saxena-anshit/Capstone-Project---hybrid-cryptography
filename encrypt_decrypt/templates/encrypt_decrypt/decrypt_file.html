@@ -43,6 +43,7 @@
                             <nav>
                                 <ul class="nav pull-right">
                                     {% if user.is_authenticated %}
+                                        <li><a href="{% url 'cloud-encrypt' %}">Encrypt</a></li>
                                         <li><a href="{% url 'logout' %}">Logout</a></li>
                                     {% endif %}
                                 </ul>
@@ -89,19 +90,8 @@
                         <input type="file" name="enc_file" id="enc_file">
                         <button type="submit">Decrypt</button>
                     </form>
-                    
-                    <br>
-                    <!--<br>
-                    <h4>Upload key to Decrypt:</h4>
-                    <br>
 
-                    Choose public key
-                    <form method="POST" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        <input type="file" name="public_key" id="public_key">
-                        <button type="submit">Decrypt File</button>
-                    </form>
-                    <br>-->
+                    <br>
                     <br>
 
                     {% if uploaded_file_url %}

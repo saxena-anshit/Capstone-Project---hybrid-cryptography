@@ -2,3 +2,6 @@ django
 django-jenkins
 django-crispy-forms
 pycrypto
+pep8
+pyflakes
+flake8
